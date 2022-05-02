@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %} {% endblock title %}</title>
+    </head>
+    <body>
+        <div>
+            <form action = "/search/" method = "GET" >
+                <input name="q" type="text" placeholder="Search...">
+                <input type = "submit">
+            </form>
+        </div>
+
+        {% block content %}
+
+        {% endblock content %}
+
+    </body>
+</html>

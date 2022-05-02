@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <form action = "/create/" method = "POST">{% csrf_token %}
+        <input name = "title" type = "text" placeholder="Title" />
+        <textarea name="content" placeholder="content" ></textarea>
+        <button type="submit" >create my article!</button>
+    </form>
+{% endblock content %}

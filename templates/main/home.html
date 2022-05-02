@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+
+
+{% block content %}
+<h1>helooooooooo</h1>
+    <div>
+        {% for article in Articles %}
+            <a href='article/{{article.id}}'>
+                <h2>
+                    {{article.title}}
+                </h2>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock content %}

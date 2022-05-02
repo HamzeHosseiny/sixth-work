@@ -6,7 +6,7 @@ def home(request):
     Articles = Article.objects.all()
     
     context = {
-        Articles : Articles,
+        'Articles' : Articles,
     }
     
-    return render(request, 'home.html', context)
+    return render(request, 'main/home.html', context)
