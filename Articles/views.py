@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+from .forms import ArticleForm
 from .models import Article
 # Create your views here.
 
@@ -37,13 +39,29 @@ def search_view(request):
     
     return render(request, 'Articles/search.html', context)
 
+##@login_required
+##def Article_create_view(request):
+##    form = ArticleForm()
+##    if request.method == "POST":
+##        form = ArticleForm(request.POST)
+##        if form.is_valid():
+##            title = form.cleaned_data.get('title')
+##            content = form.cleaned_data.get('content')
+##            article = Article.objects.create(title = title, content = content)
+##            form = ArticleForm()
+##            created = True
+##    
+##    return render(request, 'Articles/Article-create.html', {'form': form})
+
+
+
+@login_required
 def Article_create_view(request):
-    title = None
-    content = None
-    if request.method == "POST":
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-    
-    article = Article.objects.create(title = title, content = content)
-    
-    return render(request, 'Articles/Article-create.html')
+    form = ArticleForm(request.POST or None)
+    context = {'form' : form}
+    if form.is_valid():
+        article = form.save()
+        created = True
+        context['created'] = created
+        context['article'] = article
+    return render(request, 'Articles/Article-create.html', context = context)

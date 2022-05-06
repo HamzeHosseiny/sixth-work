@@ -1,11 +1,14 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-
-    <form action = "/login/" method = "POST">{% csrf_token %}
-        <input name = "username" type = "text" placeholder = "username" />
-        <input name = "password" type = "password" placeholder = "password" />
+    {% if not request.user.is_authenticated %}
+    <form action = "/login/" method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
         <button type="submit" >login!</button>
     </form>
+    {% else %}
+        <p style="color: rgb(12, 179, 54);" >you are alredy loged in, would you like to <a href="/logout/">logout?</a></p>
+    {% endif %}
 
 {% endblock content %}

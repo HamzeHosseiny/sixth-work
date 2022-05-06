@@ -1,9 +1,12 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+    {% if not created %}
     <form action = "/create/" method = "POST">{% csrf_token %}
-        <input name = "title" type = "text" placeholder="Title" />
-        <textarea name="content" placeholder="content" ></textarea>
+        {{ form }}
         <button type="submit" >create my article!</button>
     </form>
+    {% else %}
+        <p><a href='/article/{{ article.id }}/' >{{ article.title }}</a></p>
+    {% endif %}
 {% endblock content %}
