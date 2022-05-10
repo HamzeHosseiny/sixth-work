@@ -6,7 +6,7 @@
 <h1>helooooooooo</h1>
     <div>
         {% for article in Articles %}
-            <a href='article/{{article.id}}'>
+            <a href="{% url 'detail' slug=article.slug %}">
                 <h2>
                     {{article.title}}
                 </h2>

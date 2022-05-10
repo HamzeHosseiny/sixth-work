@@ -9,7 +9,7 @@ urlpatterns = [
     path('', home),
     path('search/', search_view),
     path('create/', Article_create_view),
-    path('article/<int:id>/', detail_view),
+    path('article/<slug:slug>/', detail_view, name = 'detail'),
     path('login/', login_view),
     path('logout/', logout_view),
     path('register/', Register_view),

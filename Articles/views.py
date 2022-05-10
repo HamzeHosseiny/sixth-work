@@ -4,10 +4,10 @@ from .forms import ArticleForm
 from .models import Article
 # Create your views here.
 
-def detail_view(request, id = None):
+def detail_view(request, slug = None):
     article = None
-    if id is not None:
-        article = Article.objects.get(id = id)
+    if slug is not None:
+        article = Article.objects.get(slug = slug)
     
     context = {
         'Article' : article
@@ -64,4 +64,5 @@ def Article_create_view(request):
         created = True
         context['created'] = created
         context['article'] = article
+        return redirect('detail', slug = article.slug)
     return render(request, 'Articles/Article-create.html', context = context)
