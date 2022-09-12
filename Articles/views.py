@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from .forms import ArticleForm
 from .models import Article
@@ -16,23 +17,8 @@ def detail_view(request, slug = None):
     return render(request, 'Articles/detail.html', context)
 
 def search_view(request):
-    
-    queryset = request.GET #this is a dictionary <WSGI Queryset: {['q']:[the user search]}>
-    q = queryset.get('q')
-    try:
-        q = int(q)
-    except:
-        q = None
-    
-    article = None
-    
-    if q is not None:
-        
-        try:
-            article = Article.objects.get(id = q)
-        except:
-            article = None
-    
+    query = request.GET.get('q')#this is a dictionary <WSGI Queryset: {['q']:[the user search]}>
+    article = Article.objects.search(query = query)  
     context = {
         'Article' : article
     }

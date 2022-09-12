@@ -1,12 +1,13 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-    <div>
-        <h1>
-            {{Article.title}}
-        </h1>
-        <p>
-            {{Article.content}}
-        </p>
-    </div>
+    {% for article in Article %}
+        <div>
+            <a href="{% url 'detail' slug=article.slug %}">
+                <h1>
+                    {{article.title}}
+                </h1>
+            </a>
+        </div>
+    {% endfor %}
 {% endblock content %}
