@@ -1,16 +1,12 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from .views import home
-from Articles.views import detail_view, search_view, Article_create_view
 from account.views import login_view, logout_view, Register_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', home),
-    path('search/', search_view),
-    path('create/', Article_create_view),
-    path('article/<slug:slug>/', detail_view, name = 'detail'),
-    path('login/', login_view),
-    path('logout/', logout_view),
-    path('register/', Register_view),
+    path('admin/', admin.site.urls),
+    path('Recipes/', include('Recipes.urls')),
+    path('Articles/', include('Articles.urls')),
+    path('Profiles/', include('account.urls')),
 ]

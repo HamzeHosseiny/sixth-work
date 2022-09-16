@@ -1,0 +1,14 @@
+<h1>{{UserRecipe.name}}</h1>
+<h1>{{UserRecipe.user}}</h1>
+<h1>{{UserRecipe.descriptions}}</h1>
+<h1>{{UserRecipe.directions}}</h1>
+<h1>{{UserRecipe.timestamps}}</h1>
+<a href="{% url 'Recipes:update' id=UserRecipe.id  %}">Edit</a>
+{% for ingredient in UserRecipe.recipeingredient_set.all %}
+    <h1>{{ingredient.name}}</h1>
+    {% if ingredient.as_imperial is not None %}
+    <h1>{{ingredient.as_imperial}}</h1>
+    {% elif ingredient.as_mks is not None %}
+    <h1>{{ingredient.as_mks}}</h1>
+    {% endif %}
+{% endfor %}

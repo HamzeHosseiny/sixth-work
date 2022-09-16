@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<div>
+{% for R in Recipe %}
+<a href="{% url 'Recipes:detail' id=R.id %}" >
+<h1> {{R.name}} </h1>
+</a>
+{% endfor %}
+</div>

@@ -5,7 +5,7 @@
     </head>
     <body>
         <div>
-            <form action = "/search/" method = "GET" >
+            <form action = "{% url 'Articles:search' %}" method = "GET" >
                 <input name="q" type="text" placeholder="Search...">
                 <input type = "submit">
             </form>

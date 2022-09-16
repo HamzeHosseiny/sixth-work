@@ -3,7 +3,7 @@
 {% block content %}
     {% for article in Article %}
         <div>
-            <a href="{% url 'detail' slug=article.slug %}">
+            <a href="{% url 'Articles:detail' slug=article.slug %}">
                 <h1>
                     {{article.title}}
                 </h1>

@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+
+<style>
+    .ingredient-form {
+        border-bottom: 1px solid black;
+    }
+</style>
+
+<div style="margin-top:30px;">
+    <form action="{% url 'Recipes:update' id=object.id %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+         <div class="{% if field.field.requaired %}'requaired-class'{% endif %}" >
+            {{ field.label_tag }}  {{ field }}
+            {{ field.help_text|safe }}
+         </div>
+        {% endfor %}
+        {% if formset %}
+        <h2>Ingredients</h2>
+        {% for form in formset %}
+        {{ formset.management_form }}
+        <div class="ingredient-form" >
+            {% for field in form %}
+         <div class="{% if field.field.requaired %}'requaired-class'{% endif %}" >
+            {{ field.label_tag }}  {{ field }}
+            {{ field.help_text|safe }}
+         </div>
+        {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <button style="margin-top:10px;" type="submit">Save</button>
+    </form>
+</div>
+
+{% endblock content %}
